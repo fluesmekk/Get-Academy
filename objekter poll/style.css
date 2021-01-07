@@ -1,0 +1,56 @@
+body {
+    background-color: aliceblue;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    background-color: grey;
+}
+
+.page {
+    background-color: rgb(134, 126, 126);
+    width: 80%;
+    height: 120vh;
+}
+
+.sidebar {
+    background-color: indianred;
+    width: 15vh;
+    height: 4vh;
+}
+
+#selected {
+    width: 15vh;
+    height: 4vh;
+    background-color: whitesmoke;
+    color: black;
+}
+
+.userInfo {
+    margin-top: 30vh;
+    margin-left: 60vh;
+    width: 10vh;
+    height: 20vh;
+}
+
+.password {
+    position: relative;
+}
+
+.username {
+    position: relative;
+    
+}
+
+.login {
+    margin-top: 3.9%;
+    
+}
+
+#currentUser {
+    position: relative;
+    margin-left: 20%;
+    background-color: blanchedalmond;
+    height: 7vh;
+}
