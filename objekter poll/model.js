@@ -1,17 +1,21 @@
 const model = {
 
     drawnPage: '',
+    alternatives: '',
 
     inputs: {
+        inputCount: 1,
         question: '',
-        alternatives: [],
+        alternatives: [
+            '',
+        ],
         deadline: '',
-        inputUsername: 'Lars',
-        inputPassword: '123',
+        inputUsername: '',
+        inputPassword: '',
     },
 
     app: {
-        currentPage: 'logIn',
+        currentPage: 'log in',
         currentUser: ''
     },
 
@@ -30,6 +34,11 @@ const model = {
         {
             pollId: 0,
             question: 'Hva er meningen med livet?',
+            newPoll: false,
+            userHasVoted: 
+            [
+                'Per',
+            ],
             alternatives: [
                 {
                     answer: '42',
@@ -45,6 +54,11 @@ const model = {
         {
             pollId: 1,
             question: 'Stav 2',
+            newPoll: false,
+            userHasVoted: 
+            [
+                'Per',
+            ],
             alternatives: [
                 {
                     answer: 'To',

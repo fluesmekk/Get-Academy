@@ -1,8 +1,14 @@
 body {
     background-color: aliceblue;
+    width: 90%;
+    margin-left: 10%;
 }
 
+#app {
+    width: 100%;
+}
 .container {
+    margin-right: 15%;
     display: flex;
     justify-content: center;
     background-color: grey;
@@ -10,26 +16,26 @@ body {
 
 .page {
     background-color: rgb(134, 126, 126);
-    width: 80%;
+    width: 90%;
     height: 120vh;
 }
 
 .sidebar {
-    background-color: indianred;
-    width: 15vh;
-    height: 4vh;
+    width: 17vh;
+    height: 6vh;
 }
 
 #selected {
-    width: 15vh;
-    height: 4vh;
+    width: 10%
+    height: 4.1vh;
     background-color: whitesmoke;
     color: black;
 }
 
 .userInfo {
-    margin-top: 30vh;
-    margin-left: 60vh;
+    margin: auto;
+    margin-left: 37%;
+    margin-top: 20%;
     width: 10vh;
     height: 20vh;
 }
@@ -49,8 +55,72 @@ body {
 }
 
 #currentUser {
-    position: relative;
-    margin-left: 20%;
+
+    float: right;
     background-color: blanchedalmond;
-    height: 7vh;
+    height: 6vh;
+    width: 12%;
+}
+
+.pollPage {
+    margin-top: 12%;
+    margin-left: 10%;
+    width: 80%;
+    height: 70vh;
+
+}
+
+.poll {
+    width: 100%;
+    height: 25%;
+    background-color: blanchedalmond;
+}
+
+.alternatives {
+    width: 100%;
+    height: 17%;
+    background-color: rgb(220, 220, 235);
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid black 1px;
+}
+
+.voteButton {
+    background-color: rgb(141, 141, 160);
+}
+
+.question {
+    width: 100%;
+    height: 15%;
+}
+
+.createPoll {
+    margin-top: 5%;
+    width: 100%;
+    height: 50%;
+    background-color: rgb(124, 116, 124);
+    display: flex;
+}
+
+.input {
+    display: flex;
+    margin-top: 10%;
+    height: 6%;
+    width: 40%;
+}
+
+.inputAlternatives {
+    margin-top: 5.5%;
+    width: 40%;
+    height: 100%;
+}
+
+.makePoll {
+    margin-top: 9.4%;
+    height: 4.5%;
+}
+
+.makeAlternative {
+    clear: left;
+    right: 10%;
 }

@@ -5,10 +5,17 @@ function login() {
             if (model.users[i].password == model.inputs.inputPassword) {
                 model.app.currentUser = model.inputs.inputUsername;
                 console.log('riktig passord')
+                if (model.app.currentUser != 'Admin') {
+                    model.app.currentPage = 'vote';
+                    changePage('vote');
+                } 
+                else if (model.app.currentUser == 'Admin') {
+                    model.app.currentPage = 'create Poll'
+                }
             }
             
         }
     }
-    updateView();
+    setTimeout(updateView(), 2000);
    
 }
