@@ -103,15 +103,22 @@ function drawPage() {
         let alternatives = '';
         for (let i = 0; i < model.polls.length; i++) {
             poll += `
-            <div class="">
-            ${model.polls[i].question}
-            ${alternatives}
-            </div>
+            <div class="poll">
+            <div class="question">${model.polls[i].question}</div>
+            
+            
             `;
             for (let j = 0; j < model.polls[i].alternatives.length; j++) {
-                alternatives += `
-                ${model.polls[i].alternatives[j].answer}
+                var end = '';
+                if (j <= model.polls[i].alternatives.length) {
+                    console.log(model.polls[i].alternatives[j])
+                    end = `</div>`
+                }
+                poll += `
+                <div class="alternatives">${model.polls[i].alternatives[j].answer}</div>
+                ${end}
                 `
+                
             };
             // for (let x = 0; x < model.polls.length; x++) {
             //     alternatives += `
@@ -119,8 +126,8 @@ function drawPage() {
             //     `
             // }
             model.drawnPage = `
-            <div class="input">
-                <div>${poll}</div>
+            <div class="pollPage">
+                ${poll}
             </div>
         
             `
