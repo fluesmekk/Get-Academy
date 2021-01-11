@@ -10,12 +10,14 @@ function login() {
                     changePage('vote');
                 } 
                 else if (model.app.currentUser == 'Admin') {
-                    model.app.currentPage = 'create Poll'
+                    console.log('setting cp to createPoll')
+                    model.app.currentPage = 'create Poll';
+                    changePage('create Poll');
                 }
             }
             
         }
     }
-    setTimeout(updateView(), 2000);
+    updateView();
    
 }

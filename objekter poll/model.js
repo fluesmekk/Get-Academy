@@ -34,7 +34,7 @@ const model = {
         {
             pollId: 0,
             question: 'Hva er meningen med livet?',
-            newPoll: false,
+            open: true,
             userHasVoted: 
             [
                 'Per',
@@ -54,7 +54,7 @@ const model = {
         {
             pollId: 1,
             question: 'Stav 2',
-            newPoll: false,
+            open: false,
             userHasVoted: 
             [
                 'Per',

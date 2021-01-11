@@ -46,7 +46,7 @@ function drawPage() {
         let currentPoll = '';
         let alternatives = '';
         for (let i = 0; i < model.polls.length; i++) {
-            if (model.polls[i].newPoll == true) {
+            if (model.polls[i].open == true) {
                 for (let j = 0; j < model.polls[i].alternatives.length; j++) {
                     alternatives += 
                     `
@@ -73,7 +73,6 @@ function drawPage() {
         
         `;
     }
-    let alternatives= '';
     if (model.app.currentPage == 'create Poll') {
         
         model.drawnPage = `
@@ -98,12 +97,35 @@ function drawPage() {
         `
     }
 
-    // holder på med denne funksjonen! Må også fikse etter innlogging av admin så skal man komme rett inn i create Poll.
+    //prøver å tegne opp en alternatives[x] per gang jeg legger til poll question.
     if (model.app.currentPage == 'view All Polls') {
-        model.drawnPage = `
+        let poll = '';
+        let alternatives = '';
+        for (let i = 0; i < model.polls.length; i++) {
+            poll += `
+            <div class="">
+            ${model.polls[i].question}
+            ${alternatives}
+            </div>
+            `;
+            for (let j = 0; j < model.polls[i].alternatives.length; j++) {
+                alternatives += `
+                ${model.polls[i].alternatives[j].answer}
+                `
+            };
+            // for (let x = 0; x < model.polls.length; x++) {
+            //     alternatives += `
+            //     ${alternatives[x]}
+            //     `
+            // }
+            model.drawnPage = `
+            <div class="input">
+                <div>${poll}</div>
+            </div>
         
+            `
+        }
         
-        `
     }
     updateView();
 }
@@ -120,3 +142,4 @@ function createAlternative() {
     drawPage();
     updateView();
 }
+
