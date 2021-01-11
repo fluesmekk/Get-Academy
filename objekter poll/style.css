@@ -26,10 +26,21 @@ body {
 }
 
 #selected {
-    width: 10%;
-    height: 4.1vh;
+    position: relative;
+    width: auto;
+    height: auto;
     background-color: whitesmoke;
     color: black;
+}
+
+#currentPage {
+    position: relative;
+    width: 100%;
+}
+
+#select {
+    position: relative;
+    width: 100%;
 }
 
 .userInfo {
@@ -123,4 +134,10 @@ body {
 .makeAlternative {
     clear: left;
     right: 10%;
+}
+
+.finished {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

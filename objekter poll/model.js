@@ -70,6 +70,26 @@ const model = {
                 }
             ],
             deadline: '09.01.2021',
+        },
+        {
+            pollId: 2,
+            question: 'Stav 2',
+            open: true,
+            userHasVoted: 
+            [
+                'Per',
+            ],
+            alternatives: [
+                {
+                    answer: 'To',
+                    votes: 3,
+                },
+                {
+                    answer: 'Tre',
+                    votes: 1,
+                }
+            ],
+            deadline: '09.02.2021',
         }
     ],
 

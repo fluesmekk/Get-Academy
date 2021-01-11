@@ -5,8 +5,12 @@ function updateView() {
     <div class="container">
 
         
-            <div id="selected">${model.app.currentPage}
+            <div id="selected">
+            <div id="currentPage">
+            ${model.app.currentPage}
+            </div>
 
+                <div id="select">
                 <select onchange="changePage(value)";>
                 <option disabled selected="selected">-- select an option --</option>
                 <option value="log in">Log In</option>
@@ -14,6 +18,7 @@ function updateView() {
                 <option value="create Poll">Create Poll</option>
                 <option value="view All Polls">View All Polls</option>
                 </select>
+                </div>
             </div>
         
         
@@ -43,12 +48,15 @@ function drawPage() {
         `;
     }
     if (model.app.currentPage == 'vote') {
+        console.log('vote')
         let currentPoll = '';
         let alternatives = '';
         for (let i = 0; i < model.polls.length; i++) {
             if (model.polls[i].open == true) {
                 for (let j = 0; j < model.polls[i].alternatives.length; j++) {
                     alternatives += 
+                    // tegne opp alle som er åpene, med added func som tegner opp til bruker hvis bruker ikke har stemt.
+                    // fikse at det man skriver inn ikke forsvinner når man legger til alternativ.
                     `
                     <div class="alternatives">
                     Alternative ${j + 1}: ${model.polls[i].alternatives[j].answer}
@@ -69,6 +77,7 @@ function drawPage() {
         model.drawnPage = `
         <div class="pollPage">
         ${currentPoll}
+        
         </div>
         
         `;
@@ -97,10 +106,8 @@ function drawPage() {
         `
     }
 
-    //prøver å tegne opp en alternatives[x] per gang jeg legger til poll question.
     if (model.app.currentPage == 'view All Polls') {
         let poll = '';
-        let alternatives = '';
         for (let i = 0; i < model.polls.length; i++) {
             poll += `
             <div class="poll">
@@ -110,32 +117,36 @@ function drawPage() {
             `;
             for (let j = 0; j < model.polls[i].alternatives.length; j++) {
                 var end = '';
-                if (j <= model.polls[i].alternatives.length) {
-                    console.log(model.polls[i].alternatives[j])
-                    end = `</div>`
+                //lukker poll med tilhørende knapper og informasjon
+                if (j == (model.polls[i].alternatives.length - 1)) {
+
+                    end = ` <div class="finished">
+                            <button onclick="finishPoll(${i})" ${model.polls[i].open ? '' : 'disabled'}>
+                            Finish
+                            </button>
+                            <div>${model.polls[i].deadline}</div>
+                            <div>state: ${model.polls[i].open ? 'Ongoing' : 'Finished'}</div>
+                            </div>
+                            </div>`
                 }
+                //putter inn alternativ
                 poll += `
-                <div class="alternatives">${model.polls[i].alternatives[j].answer}</div>
+                <div class="alternatives">${model.polls[i].alternatives[j].answer} <div>Votes: ${model.polls[i].alternatives[j].votes} </div></div>
                 ${end}
                 `
                 
             };
-            // for (let x = 0; x < model.polls.length; x++) {
-            //     alternatives += `
-            //     ${alternatives[x]}
-            //     `
-            // }
             model.drawnPage = `
             <div class="pollPage">
                 ${poll}
             </div>
         
-            `
+            `;
         }
         
     }
     updateView();
-}
+};
 
 function createAlternative() {
     model.inputs.alternatives.push('');
@@ -147,6 +158,5 @@ function createAlternative() {
     `;
     
     drawPage();
-    updateView();
 }
 

@@ -4,18 +4,17 @@ function makePoll() {
         {
         pollId: count,
         question: model.inputs.question,
-        newPoll: true,
+        open: true,
         userHasVoted: [],
         alternatives: model.inputs.alternatives,
         deadline: reformatDate(model.inputs.deadline),
     }
-    )
+    );
     model.polls[model.polls.length]
     model.drawnPage = '';
     drawPage();
-    updateView();
 }
 
-function reformatDate(a) {
-    return a.split('-').reverse().join('-');
+function reformatDate(date) {
+    return date.split('-').reverse().join('-');
 }
