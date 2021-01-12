@@ -49,10 +49,12 @@ function drawPage() {
     }
     if (model.app.currentPage == 'vote') {
         console.log('vote')
+        let question = ''
         let currentPoll = '';
         let alternatives = '';
         for (let i = 0; i < model.polls.length; i++) {
             if (model.polls[i].open == true) {
+
                 for (let j = 0; j < model.polls[i].alternatives.length; j++) {
                     alternatives += 
                     // tegne opp alle som er åpene, med added func som tegner opp til bruker hvis bruker ikke har stemt.
@@ -64,14 +66,16 @@ function drawPage() {
                     </div>
                     `;
                 }
-                currentPoll = `
+                currentPoll += `
                 <div class="poll">
                 <div class="question">
                 Question : ${model.polls[i].question}
                 </div>
                 ${alternatives}
                 </div>
-                `
+                `;
+                alternatives = '';
+            
             }
         }
         model.drawnPage = `
@@ -83,11 +87,11 @@ function drawPage() {
         `;
     }
     if (model.app.currentPage == 'create Poll') {
-        
+/// lage denne på nytt? lurt å tegne opp alle inputs fra en loop, enklere å holde styr på!
         model.drawnPage = `
         <div class="createPoll">
             <div class="input">Question
-            <input oninput="model.inputs.question = this.value"></input>
+            <input oninput="model.inputs.question = this.value" value="${model.inputs.question}"></input>
 
             <input type="date" date-format="DD MMMM YYYY" oninput="model.inputs.deadline = this.value"></input>
             </div>
@@ -95,7 +99,7 @@ function drawPage() {
             <div class="inputAlternatives">
             <div class="input">Alternative 1
 
-            <input oninput="model.inputs.alternatives[0] = this.value"></input><button onclick="createAlternative()">+</button>
+            <input oninput="model.inputs.alternatives[0] = this.value" value="${model.inputs.alternatives[0]}"></input><button onclick="createAlternative()">+</button>
             </div>
             
             ${model.alternatives}
@@ -149,14 +153,14 @@ function drawPage() {
 };
 
 function createAlternative() {
-    model.inputs.alternatives.push('');
+    numbers = model.numbers;
+    model.inputs.alternatives.push('.');
     model.inputs.inputCount += 1;
+    console.log(numbers)
     model.alternatives += `
-    <div class="input">Alternative ${model.inputs.inputCount}
-            <input oninput="model.inputs.alternatives[${model.inputs.inputCount - 1}] = this.value"></input>
-    </div>
-    `;
     
+    `;
+    model.numbers += 1;
     drawPage();
 }
 

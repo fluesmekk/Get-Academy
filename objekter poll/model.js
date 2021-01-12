@@ -1,11 +1,14 @@
 const model = {
 
+
+    numbers: 1,
     drawnPage: '',
     alternatives: '',
 
     inputs: {
         inputCount: 1,
         question: '',
+        tempAlternatives: [],
         alternatives: [
             '',
         ],
@@ -49,7 +52,7 @@ const model = {
                     votes: 0,
                 }
             ],
-            deadline: '08.01.2021',
+            deadline: '08-01-2021',
         },
         {
             pollId: 1,
@@ -69,7 +72,7 @@ const model = {
                     votes: 1,
                 }
             ],
-            deadline: '09.01.2021',
+            deadline: '09-01-2021',
         },
         {
             pollId: 2,
@@ -89,7 +92,7 @@ const model = {
                     votes: 1,
                 }
             ],
-            deadline: '09.02.2021',
+            deadline: '09-02-2021',
         }
     ],
 
