@@ -34,8 +34,18 @@ function updateView() {
 }
 drawPage();
 function drawPage() {
-    if (model.app.currentPage == 'log in') {
-        model.drawnPage = `
+    if (model.app.currentPage == 'log in') { logInView()}
+    if (model.app.currentPage == 'vote') {voteView()}
+    if (model.app.currentPage == 'create Poll') {createPollView()}
+    if (model.app.currentPage == 'view All Polls') {viewAllPollsView()}
+    updateView();
+};
+
+
+
+
+function logInView() {
+    model.drawnPage = `
             <div class="userInfo">
             
             <div>Username</div>
@@ -46,26 +56,32 @@ function drawPage() {
             
             </div>
         `;
-    }
-    if (model.app.currentPage == 'vote') {
-        console.log('vote')
+}
+
+function voteView() {
+    console.log('vote')
         let question = ''
         let currentPoll = '';
         let alternatives = '';
         for (let i = 0; i < model.polls.length; i++) {
-            if (model.polls[i].open == true) {
+            if ((model.polls[i].open == true) && (model.polls[i].userHasVoted.includes(model.app.currentUser) == false)) {
+                    for (let j = 0; j < model.polls[i].alternatives.length; j++) {
+                        alternatives +=
+                            // tegne opp alle som er åpene, med added func som tegner opp til bruker hvis bruker ikke har stemt.
+                            // fikse at det man skriver inn ikke forsvinner når man legger til alternativ.
+                            `
+                        <div class="alternatives">
+                        Alternative ${j + 1}: ${model.polls[i].alternatives[j].answer}
+                        <button class="voteButton" onclick="vote(${i}, ${j})">Vote</button>
+                        </div>
+                        `;
+                    }
+            
+                        
+                    
+                
 
-                for (let j = 0; j < model.polls[i].alternatives.length; j++) {
-                    alternatives += 
-                    // tegne opp alle som er åpene, med added func som tegner opp til bruker hvis bruker ikke har stemt.
-                    // fikse at det man skriver inn ikke forsvinner når man legger til alternativ.
-                    `
-                    <div class="alternatives">
-                    Alternative ${j + 1}: ${model.polls[i].alternatives[j].answer}
-                    <button class="voteButton" onclick="vote(${i}, ${j})">Vote</button>
-                    </div>
-                    `;
-                }
+                
                 currentPoll += `
                 <div class="poll">
                 <div class="question">
@@ -75,43 +91,58 @@ function drawPage() {
                 </div>
                 `;
                 alternatives = '';
-            
-            }
+
+            } 
         }
         model.drawnPage = `
         <div class="pollPage">
         ${currentPoll}
-        
         </div>
-        
         `;
+        updateView();
+}
+
+
+function createPollView() {
+    var inputs = '';
+    var end = '';
+    /// lage denne på nytt? lurt å tegne opp alle inputs fra en loop, enklere å holde styr på!
+    for (let i = 0; i < model.inputs.alternatives.length; i++) {
+        if (i == 0) {
+           end  = '<button onclick="createAlternative()">+</button>';
+        } else if (i > 0) {
+            end = '';
+        }
+        inputs += `
+        <div class="input">
+        <input oninput="model.inputs.alternatives[${i}] = this.value" value="${model.inputs.alternatives[i]}" size="15"></input>
+        ${end}
+        </div>
+        `;
+
     }
-    if (model.app.currentPage == 'create Poll') {
-/// lage denne på nytt? lurt å tegne opp alle inputs fra en loop, enklere å holde styr på!
-        model.drawnPage = `
-        <div class="createPoll">
-            <div class="input">Question
-            <input oninput="model.inputs.question = this.value" value="${model.inputs.question}"></input>
+    model.drawnPage = `
+    <div class="createPoll">
+        <div class="inputQuestion">Question
+        <input oninput="model.inputs.question = this.value" value="${model.inputs.question}"></input>
 
-            <input type="date" date-format="DD MMMM YYYY" oninput="model.inputs.deadline = this.value"></input>
-            </div>
+        <input type="date" date-format="DD MMMM YYYY" oninput="model.inputs.deadline = this.value" value="${model.inputs.deadline}"></input>
+        </div>
 
-            <div class="inputAlternatives">
-            <div class="input">Alternative 1
-
-            <input oninput="model.inputs.alternatives[0] = this.value" value="${model.inputs.alternatives[0]}"></input><button onclick="createAlternative()">+</button>
-            </div>
-            
-            ${model.alternatives}
-            </div>
-            <button class="makePoll" onclick="makePoll()">Make poll</button>
+        <div class="inputAlternatives">
+        ${inputs}
+        <button class="makePoll" onclick="makePoll()" size="15">Make poll</button>
         </div>
         
-        `
-    }
+    </div>
+    `;
+}
 
-    if (model.app.currentPage == 'view All Polls') {
-        let poll = '';
+
+
+
+function viewAllPollsView() {
+    let poll = '';
         for (let i = 0; i < model.polls.length; i++) {
             poll += `
             <div class="poll">
@@ -138,7 +169,7 @@ function drawPage() {
                 <div class="alternatives">${model.polls[i].alternatives[j].answer} <div>Votes: ${model.polls[i].alternatives[j].votes} </div></div>
                 ${end}
                 `
-                
+
             };
             model.drawnPage = `
             <div class="pollPage">
@@ -146,21 +177,18 @@ function drawPage() {
             </div>
         
             `;
-        }
-        
-    }
-    updateView();
-};
+            }
+}
+
+
+
+
+
+
+
 
 function createAlternative() {
-    numbers = model.numbers;
-    model.inputs.alternatives.push('.');
-    model.inputs.inputCount += 1;
-    console.log(numbers)
-    model.alternatives += `
-    
-    `;
-    model.numbers += 1;
+    model.inputs.alternatives.push('');
     drawPage();
 }
 

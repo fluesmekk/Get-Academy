@@ -15,7 +15,7 @@ function makePoll() {
         pollId: count,
         question: model.inputs.question,
         open: true,
-        userHasVoted: [],
+        userHasVoted: [''],
         alternatives: alt,
         deadline: reformatDate(model.inputs.deadline, '-'),
     }
@@ -23,7 +23,12 @@ function makePoll() {
     model.polls[model.polls.length]
     model.drawnPage = '';
     
+    model.inputs.deadline = '';
+    model.inputs.alternatives = [''];
+    model.inputs.question = '';
     drawPage();
+    alert('Du har lagd en Poll')
+
 }
 
 function reformatDate(date, character) {
