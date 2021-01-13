@@ -1,0 +1,5 @@
+Kunde vil ha ett pollingssystem.
+Forskjellige roller og rettigheter( log in system)
+Kunne se endre og gjøre ferdig poller(før tiden)(kan se hvor mange som har stemt, kanskje ha med prosent?)
+Kunne lage poller( med spørsmål, alternativ og deadline)
+Bruker skal bare ha tilgang på å stemme(tegner bare opp de som brukeren ikke har stemt på enda)
