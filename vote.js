@@ -3,7 +3,8 @@ function vote(questionIndex, alternativeIndex) {
         alert('User has already voted')
         return;
     }
-    model.polls[questionIndex].alternatives[alternativeIndex].votes + 1;
+    model.polls[questionIndex].alternatives[alternativeIndex].votes += 1;
+    console.log(model.polls[questionIndex].alternatives[alternativeIndex].votes);
     alert(`Du har stemt på ${model.polls[questionIndex].alternatives[alternativeIndex].answer}`)
     model.polls[questionIndex].userHasVoted.push(model.app.currentUser);
     drawPage();
