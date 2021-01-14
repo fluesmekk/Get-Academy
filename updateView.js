@@ -159,6 +159,7 @@ function viewAllPollsView() {
                             <button onclick="finishPoll(${i})" ${model.polls[i].open ? '' : 'disabled'}>
                             Finish
                             </button>
+                            <button onclick="deletePoll(${i})">Delete</button>
                             <div>${model.polls[i].deadline}</div>
                             <div>state: ${model.polls[i].open ? 'Ongoing' : 'Finished'}</div>
                             </div>
