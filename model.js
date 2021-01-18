@@ -19,6 +19,7 @@ const model = {
 
     app: {
         currentPage: 'log in',
+        currentPageNor: '',
         currentUser: ''
     },
 

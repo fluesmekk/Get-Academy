@@ -1,14 +1,16 @@
 function makePoll() {
     var alt = []
     for (let i = 0; i < model.inputs.alternatives.length; i++) {
-        alt.push(
-        {
-            answer: `${model.inputs.alternatives[i]}`,
-            votes: 0,
-        },
-        )
-        console.table(alt)
+        if (model.inputs.alternatives[i] !== '') {
+            alt.push(
+                {
+                    answer: `${model.inputs.alternatives[i]}`,
+                    votes: 0,
+                },
+                )
+        }
     }
+
     let count = model.polls.length;
     model.polls.push(
         {
@@ -20,6 +22,7 @@ function makePoll() {
         deadline: reformatDate(model.inputs.deadline, '-'),
     }
     );
+    
     model.polls[model.polls.length]
     model.drawnPage = '';
     

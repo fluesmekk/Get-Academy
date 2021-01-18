@@ -1,3 +1,4 @@
+
 updateView();
 function updateView() {
     let html = '';
@@ -12,18 +13,18 @@ function updateView() {
 
                 <div id="select">
                 <select onchange="changePage(value)";>
-                <option disabled selected="selected">-- select an option --</option>
-                <option value="log in">Log In</option>
-                <option value="vote">Vote</option>
-                <option value="create Poll">Create Poll</option>
-                <option value="view All Polls">View All Polls</option>
+                <option disabled selected="selected">-- velg en side --</option>
+                <option value="log in">Innlogging</option>
+                <option value="vote">Stemme på meingsmålinger</option>
+                <option value="create Poll">Lage meningsmåling</option>
+                <option value="view All Polls">Se alle poller</option>
                 </select>
                 </div>
             </div>
         
         
         <div class="page">
-        <div id="currentUser">Logged In As:${model.app.currentUser}</div>
+        <div id="currentUser">Logget inn som:${model.app.currentUser}</div>
             ${model.drawnPage || ''}
             
         </div>
@@ -47,10 +48,10 @@ function drawPage() {
 function logInView() {
     model.drawnPage = `
             <div class="userInfo">
-            
-            <div class="password">Username</div>
+            <div class="text">Meningsmåling</div>
+            <div class="password">Brukernanvn</div>
             <input class="username" oninput="model.inputs.inputUsername = this.value"></input>
-            <div class="password">Password</div>
+            <div class="password">Passord</div>
             <input type="password" class="password" oninput="model.inputs.inputPassword = this.value"></input>
             <button class="login" onclick="login()">Enter</button>
             
@@ -123,7 +124,7 @@ function createPollView() {
     }
     model.drawnPage = `
     <div class="createPoll">
-        <div class="inputQuestion">Question
+        <div class="inputQuestion">Spørsmål: 
         <input oninput="model.inputs.question = this.value" value="${model.inputs.question}"></input>
 
         <input type="date" date-format="DD MMMM YYYY" oninput="model.inputs.deadline = this.value" value="${model.inputs.deadline}"></input>
@@ -131,7 +132,7 @@ function createPollView() {
 
         <div class="inputAlternatives">
         ${inputs}
-        <button class="makePoll" onclick="makePoll()" size="15">Make poll</button>
+        <button class="makePoll" onclick="makePoll()" size="15">Lag poll</button>
         </div>
         
     </div>
@@ -160,8 +161,8 @@ function viewAllPollsView() {
                             Finish
                             </button>
                             <button onclick="deletePoll(${i})">Delete</button>
-                            <div>${model.polls[i].deadline}</div>
-                            <div>state: ${model.polls[i].open ? 'Ongoing' : 'Finished'}</div>
+                            <div>Frist: ${model.polls[i].deadline}</div>
+                            <div>state: ${model.polls[i].open ? 'Pågående' : 'Ferdig'}</div>
                             </div>
                             </div>`
                 }
