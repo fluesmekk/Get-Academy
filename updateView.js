@@ -48,7 +48,7 @@ function logInView() {
     model.drawnPage = `
             <div class="userInfo">
             
-            <div>Username</div>
+            <div class="password">Username</div>
             <input class="username" oninput="model.inputs.inputUsername = this.value"></input>
             <div class="password">Password</div>
             <input type="password" class="password" oninput="model.inputs.inputPassword = this.value"></input>

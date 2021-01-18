@@ -1,6 +1,6 @@
 
 body {
-    background-color: aliceblue;
+    background-color: rgb(134, 129, 126);
     width: 90%;
     margin-left: 10%;
 }
@@ -18,7 +18,7 @@ body {
 .page {
     background-color: rgb(134, 126, 126);
     width: 90%;
-    height: 120vh;
+    height: 100%;
 }
 
 .sidebar {
@@ -30,7 +30,7 @@ body {
     position: relative;
     width: auto;
     height: auto;
-    background-color: whitesmoke;
+    background-color: rgb(134, 126, 126);
     color: black;
 }
 
@@ -54,15 +54,20 @@ body {
 
 .password {
     position: relative;
+    background-color: rgba(128, 128, 128, 0.726);
+    color: white;
 }
 
 .username {
     position: relative;
-    
+    background-color: rgba(128, 128, 128, 0.726);
+    color: white;
 }
 
 .login {
     margin-top: 3.9%;
+    background-color: rgba(43, 39, 39, 0.664);
+    color: white;
     
 }
 
@@ -72,7 +77,8 @@ body {
     border-bottom-left-radius: 3px;
     border-bottom: solid black 1px;
     float: right;
-    background-color: blanchedalmond;
+    background-color: rgba(39, 38, 37, 0.753);
+    color: white;
     height: 6vh;
     width: 12%;
 }
@@ -113,7 +119,6 @@ body {
     margin-top: 5%;
     width: 100%;
     height: 50%;
-    background-color: rgb(124, 116, 124);
     display: flex;
     justify-content: center;
 }
