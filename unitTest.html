@@ -1,0 +1,83 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Test Suite</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.14.0.css">
+</head>
+
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="https://code.jquery.com/qunit/qunit-2.14.0.js"></script>
+    <script src="model.js"></script>
+    <script src="changePagetxt.js"></script>
+    <script src="logIn.js"></script>
+
+    <script src="changePage.js"></script>
+    <script src="vote.js"></script>
+    <script src="makePoll.js"></script>
+    <script src="viewAllPolls.js"></script>
+    <script src="deletePoll.js"></script>
+    <script src="finishPoll.js"></script>
+    <script src="checkDeadline.js"></script>
+
+
+
+
+
+
+
+    <script>
+        drawPage()
+        function drawPage() {
+
+        }
+
+
+
+        QUnit.test("lage en poll", function (assert) {
+            model.inputs.alternatives[0] = 'Three';
+            model.inputs.question = 'Spell the number 3';
+            model.inputs.deadline = '2021-01-23'
+            makePoll();
+            let actual = model.polls[3].alternatives;
+            let expected = [{answer: 'Three', votes: 0}]
+                            
+            assert.deepEqual(actual, expected);
+        });
+
+        QUnit.test("ferdiggjør poll", function (assert) {
+            finishPoll(3)
+            let actual = model.polls[3].open;
+            let expected = false;
+                            
+            assert.deepEqual(actual, expected);
+        });
+
+        QUnit.test("skjekk rikitg input, kommer som feil siden man ikke har fylt inn ett alternativ", function (assert) {
+            model.inputs.alternatives[0] = '';
+            model.inputs.question = 'Spell the number 3';
+            model.inputs.deadline = '2021-01-23'
+            makePoll();
+            let actual = model.polls[5];
+            let expected = undefined
+                            
+            assert.deepEqual(actual, expected);
+        });
+
+        QUnit.test("Feil datoformat", function (assert) {
+            model.inputs.alternatives[0] = '123';
+            model.inputs.question = 'Spell the number 3';
+            model.inputs.deadline = 'hah'
+            makePoll();
+            let actual = model.polls[5];
+            let expected = undefined
+                            
+            assert.deepEqual(actual, expected);
+        });
+    </script>
+</body>
+
+</html>

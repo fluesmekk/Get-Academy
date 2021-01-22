@@ -1,4 +1,12 @@
 function makePoll() {
+    if (model.inputs.question == '' || model.inputs.deadline == '' || model.inputs.alternatives[0] == '') {
+        alert('Fyll inn alle felter')
+        return;
+    }
+    if (model.inputs.deadline.match(/^[a-zA-Z]+$/)){
+        alert('Feil dato-format, endre dato og prøv igjen')
+        return;
+    }
     var alt = []
     for (let i = 0; i < model.inputs.alternatives.length; i++) {
         if (model.inputs.alternatives[i] !== '') {
@@ -22,6 +30,7 @@ function makePoll() {
         deadline: reformatDate(model.inputs.deadline, '-'),
     }
     );
+    
     
     model.polls[model.polls.length]
     model.drawnPage = '';
